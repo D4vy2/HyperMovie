@@ -18,4 +18,4 @@ Now you can install all depedencies with "npm install" and enjoy!
 
 ## WARNING
 
-This wesite has no commercial or public wish. This was and still is a private project for developping purpose. Any use of it will be in your responsability. DO NOT put it online.
+This website has no commercial or public wish. This was and still is a private project for developping purpose. Any use of it will be in your responsability. DO NOT put it online.
