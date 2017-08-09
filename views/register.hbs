@@ -1,0 +1,48 @@
+{{> header }}
+<div class="container-fluid" style="margin-top: 8em;">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+    <form action="/users/register" method="POST" encType="multipart/form-data">
+        <div id="signup-container" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <h2 style="text-align: center; color: white;">Sign Up</h2>
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" name="firstname" required placeholder="First Name" id="firstName" class="form-control" pattern="[a-zA-Z\-èêéàôîïùñç]{2,20}"/><br/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" name="lastname" required id="lastName" class="form-control" placeholder="Last Name" pattern="[a-zA-Z\-èêéàôîïùñç]{2,20}"/><br/>
+            </div>
+            <div class="form-group">
+                <label for="login">Username</label>
+                <input type="text" name="username" required placeholder="[a-zA-Z0-9_]{4,20}" id="username" class="form-control" pattern="[a-zA-Z\-0-9_]{4,20}" /><br/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" required id="email" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" required id="password" placeholder="8 chars min, 1 digit min, 1 of the following: {!@#$%^&*} , 1 min, 1 maj"class="form-control"/><br/>
+            </div>
+            <div class="form-group">
+                <label for="repassword">Confirm password</label>
+                <input type="password" name="confirmPassword" required id="confirmPassword" class="form-control" placeholder="Confirm Your Password"/><br/>
+            </div>
+            <div>
+                <label for="photo">Profile picture</label>
+                <input type="file" name="photo" accept="image/*"/>
+            </div>
+            <!-- Errors message -->
+            {{#if error}}
+                <div class="alert alert-danger fade in" style="text-align: center;">
+                    {{{ error }}}
+                </div>
+            {{/if }}
+            <input type="submit" class="btn btn-primary center-block" value="Register">
+        </div>
+    </form>
+</div>
+
+<div style="clear:both; height: 100px;"></div>
+
+{{> footer }}

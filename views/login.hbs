@@ -1,0 +1,48 @@
+{{> header }}
+<div class="container-fluid" style="margin-top: 8em;">
+    <h2 style="text-align: center">Connect with <br> <br></h2>
+    <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    <div id="signin-container" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="oauth col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align: center">
+                <a href="https://api.intra.42.fr/oauth/authorize?client_id=bfa18ca1d008f4f16d51aa04f4dd4bf84924230c45c0f3987c94094c0f1eaaf1&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fusers%2Foauth%2F42&response_type=code">
+                    <img src="https://signin.intra.42.fr/assets/42_logo-7dfc9110a5319a308863b96bda33cea995046d1731cebb735e41b16255106c12.svg" style="height:4rem;"> </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align: center">
+                <a href="/users/auth/google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/600px-Google_%22G%22_Logo.svg.png"  style="height:4rem;">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align: center">
+                <a href="/users/auth/twitter";>
+                    <img src="http://www.culturelanaudiere.qc.ca/public/assets/twitterlogo.png"  style="height:4rem;"></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align: center">
+                <a href="/users/auth/facebook">
+                <img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png" style="height: 4rem;"></a>
+            </div>
+        </div>
+        <p id="or_login" style="text-align: center">or</p>
+      <h2 style="color: white; text-align: center;">Sign in</h2>
+      <p><br/>No account? <a href="/register" id="signup">Create one!</a></p>
+      <form action="/users/login" method="POST">
+        <div class="form-group">
+          <input type="text" name="username" placeholder="Username" class="form-control"/><br/>
+          <input type="password" name="password" placeholder="Password" class="form-control"/>
+          <div style="text-align: right;">
+          <a href="/forget" style="color: lightblue; text-decoration: none;">Forgot your password?</a>
+          </div>
+          <br/><br/>
+          <input type="submit" id="btn-signin" class="btn btn-primary" value="Sign in">
+          <p><br/></p>
+        </div>
+      </form>
+    </div>
+</div>
+<!--if errors -->
+{{#if error}}
+<div id="errorMessage" class="alert alert-danger fade in" style="text-align: center">
+  <p>{{ error }} </p><br/>
+</div>
+{{/if }}
+{{> footer }}

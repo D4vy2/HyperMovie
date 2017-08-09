@@ -1,0 +1,27 @@
+{{> header }}
+<div class="container-fluid" style="margin-top: 8em;">
+  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+  <form action="/users/sendResetInstruction" method="POST">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
+      <div style="color: salmon; font-family: monospace">
+        <h2 style="color: white; font-weight: bold;">Reset password</h2><br/><br/>
+        <p>Please enter your email adress to receive a new password</p>
+      </div>
+      <div class="form-group">
+        <input required type="text" name="email" placeholder="Email" class="form-control" /><br/>
+        <br/><br/>
+        <input type="submit" style="background-color: brown; border-color: brown; color: white;" class="btn" value="Reset my password">
+      </div>
+    </div>
+  </form>
+</div>
+{{#if error}}
+<div id="errorMessage" class="alert alert-danger fade in" style="text-align: center">
+  <p>{{ error }} </p><br/>
+{{/if }}
+{{#if success}}
+<div class="alert alert-success fade in" style="text-align: center">
+  <p>{{ success }} </p><br/>
+</div>
+{{/if }}
+{{> footer }}

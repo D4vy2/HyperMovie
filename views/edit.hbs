@@ -1,0 +1,75 @@
+{{>header}}
+{{>navbar}}
+
+<div class="container-fluid" style="margin-top: 5em;">
+    <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="text-align: right; padding-right: 5em;">
+        {{#if user.picture}}
+            <img style="border: 3px solid white; max-width: 30em;" src="/static/uploads/{{ user.picture }}" alt="nopictureyet">
+        {{else if user.auth42}}
+            <img style="border: 3px solid white;" src="{{ user.auth42.picture }}" alt="nopictureyet">
+        {{/if}}
+    </div>
+    <!--<div class="col-lg-8 col-md-8 col-sm-4 col-xs-12"></div>-->
+    <form action="/users/edit" method="POST" encType="multipart/form-data">
+        <div id="signup-container" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h2 style="color: black;">Edit my profile</h2><br/><br/>
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" name="firstname" id="firstname" class="form-control" placeholder="{{user.firstname}}"><br/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" placeholder="{{user.lastname}}"><br/>
+            </div>
+
+            {{#if user.mail}}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="{{user.mail}}">
+            </div>
+            {{/if}}
+            <div class="form-group">
+                <label for="sel1">Language preference:</label>
+                <select class="form-control" id="sel1" name="lang">
+                    {{#if user.language}}
+                        <option selected>{{{user.language}}}</option>
+                    {{else}}
+                        <option selected>English</option>
+                    {{/if}}
+                    <option>French</option>
+                    <option>Espagnol</option>
+                    <option>Russe</option>
+                    <option>English</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="photo">Profile picture</label>
+                <input type="file" name="photo"  accept="image/*"/>
+            </div>
+        <p>{{movieListViewec}}</p>
+            {{#if movieListViewed}}
+                <h2>Your movies: </h2>
+            {{#each movieListViewed}}
+                <p style="color: limegreen">{{this.title}}</p>
+            {{/each}}
+            {{/if}}
+            <!-- Errors message -->
+            {{#if error}}
+                <div class="alert alert-danger fade in" style="text-align: center;">
+                    {{{ error }}}
+                </div>
+            {{/if }}
+            {{#if message}}
+                <div class="alert alert-sucess fade in" style="text-align: center;">
+                    {{{message}}}
+                </div>
+            {{/if}}
+            <br/><br/><input type="submit" class="btn btn-primary center-block" value="Save">
+        </div>
+    </form>
+    </div>
+</div>
+{{>footer}}
+<script src="/static/js/search.js"></script>

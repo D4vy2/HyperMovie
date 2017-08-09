@@ -1,0 +1,26 @@
+{{>header}}
+{{>navbar}}
+
+
+{{#if users}}
+    <div>
+
+    {{#if users.picture}}
+            <img style="border: 3px solid white; max-height: 300px;" src="/static/uploads/{{ users.picture }}" alt="nopictureyet">
+    {{else if users.auth42}}
+            <img style="border: 3px solid white; max-height: 300px;" src="{{ users.auth42.picture }}" alt="nopictureyet">
+    {{/if}}
+        <h3> {{users.username}} </h3>
+        <p>{{users.firstname}} {{users.lastname}}</p>
+        {{#if users.viewved}}
+            <p>
+                Has viewed:
+            {{#each users.viewved}}
+                {{this}}
+            {{/each}}
+        {{/if}}
+    </p>
+{{/if}}
+
+</div>
+{{>footer}}

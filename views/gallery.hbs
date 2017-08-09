@@ -1,0 +1,56 @@
+{{>header}}
+{{>navbar}}
+<div class="container-fluid" style="text-align: center;">
+    {{#if empty}}
+    <div class="container empty-result">
+        <h2 style="font-weight: bold; color: lightcoral;":>Sad no result!</h2><br/>
+        {{#if msg}}
+            {{msg}}
+        {{else}}
+            <p>We cannot find any movie with this name</p>
+            <p>Want to retry with different name?</p>
+        {{/if}}
+    </div>
+    {{else}}
+    <div class="container-fluid" id="gallery-container" style="text-align: center;">
+    <span style="display: none" id="searchInput">{{search}}</span>
+    {{#each movies}}
+        {{# if this.seen}}
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 gallery-elem seen">
+        {{else}}
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 gallery-elem">
+        {{/if}}
+                <a href="/movies/single/{{this._id}}">
+                <h1>{{this.title}}</h1>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img id="poster" src="{{this.picture.banner}}" alt="No picture available">
+                    </div>
+                </a>
+                <p id="imy">
+                    IMDB: {{this.rating}}
+                    Year: {{this.year}}
+                </p>
+
+            </div>
+    {{/each}}
+    </div>
+    {{/if}}
+    {{#unless type}}
+        <script src="/static/js/sortNfilter.js"></script>
+    {{/unless}}
+</div>
+{{>footer}}
+<script src="/static/js/search.js"></script>
+<script src="/static/js/pagination.js"></script>
+<!--<script>
+    (function() {
+        var imgs = document.querySelectorAll('img');
+        for(let i = 0, len = imgs.length; i < len; i++) {
+            let elem = imgs[i];
+            elem.addEventListener('error', (e) => {
+                elem.src = "/static/img/nopicture.jpg";
+                e.preventDefault();
+            }, false)
+        }
+    })()
+</script>-->

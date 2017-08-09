@@ -1,0 +1,105 @@
+{{>header}}
+{{>navbar}}
+{{#if empty}}
+ <div class="container empty-result">
+        <h2 style="font-weight: bold; color: lightcoral;":>Sad no result!</h2><br/>
+        <p>We cannot find any movie with this name</p>
+        <p>Want to retry with different name?</p>
+</div>
+{{else}}
+<div class="row" id="movie-container">
+    {{!--<div class="col-lg-2 col-md-10 col-sm-12 col-xs-12">
+    </div>--}}
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <img src="{{movie.picture.banner}}" alt="" style="height: 100%; width: 30em;">
+    </div>
+    <p id="idMovie" style="display: none">{{movie.imdb_id}}</p>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="font-size: 1.2em; padding-top: 0; color:lightgray">
+        <h1 class="movie-title">{{movie.title}}</h1>
+        <p>(
+            {{#each movie.genres}}
+                {{this}}
+            {{/each}}
+            )</p>
+        <div style="font-size: 1.2em; padding-top: 2em; color:lightgray">
+            <p>Year: {{movie.year}}</p>
+            <p>Director: {{movie.director}}</p>
+            <p>Actors: {{movie.actors}}</p>
+            <p>IMDB rating: {{movie.rating}}</p>
+            <h1>Synopsis:</h1>
+            <p id="synopsis"> {{movie.synopsis}}</p>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-10 col-sm-12 col-xs-12">
+    </div>
+</div>
+<div class="row" id="player-container">
+     <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+        <div class="container" style="margin-bottom: 1em; text-align: center;">
+            <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12">
+                {{#if movie.torrents.en.1080p}}
+                <div class="container" style="text-align: left; padding: 1em;">
+                    <span class="quality">1080p</span>
+                    <span style="display: none;">{{movie.torrents.en.1080p.url}}</span>
+                    <span>
+                        Seed: <span class="seed">{{movie.torrents.en.1080p.seed}}</span>
+                        Peer: <span class="peer">{{movie.torrents.en.1080p.peer}}</span>
+                    </span>
+                </div>
+                {{/if}}
+                {{#if movie.torrents.en.720p}}
+                <div class="container" style="text-align: left; padding: 1em;">
+                    <span class="quality">720p</span>
+                    <span style="display: none;">{{movie.torrents.en.720p.url}}</span>
+                    <span>
+                        Seed: <span class="seed">{{movie.torrents.en.720p.seed}}</span>
+                        Peer: <span class="peer">{{movie.torrents.en.720p.peer}}</span>
+                    </span>
+                </div>
+                {{/if}}
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin: 1em; text-align: center;">
+                <img src="/static/img/loader.gif" alt="" id="loader" style="display: none;">
+                <button id="download" class="btn" style="display: none; margin-left: 2em; background-color: black; color: skyblue;">Watch</button><p></p>
+            </div>
+            </div>
+            <span id="torrent" style="display: none;"></span>
+        </div>
+            <video controls id="player" width="640" height="480" src="" style="border: 3px solid white; background-color: black;">
+                <track label="en" kind="subtitles" srclang="en" src="/goinfre/Subtitles/{{movie._id}}-en.vtt">
+                <track label="{{user.language}}" kind="subtitles" srclang="en" src="/goinfre//Subtitles/{{movie._id}}-{{user.language}}.vtt">
+            </video>
+    </div>
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <div id="comment-container">
+            <ul id="comment-msg">
+                {{#each movie.comment}}
+                    <li class="msg-content">{{this.username}}: {{this.message}}</li>
+                {{/each}}
+            </ul>
+            <input id="comment-input" type="text" name="comment" placeholder="Your comment...">
+            <button id="buttonComment" type="submit" class="btn btn-primary" style="margin-top: 1em;">Comment</button>
+        </div>
+    </div>
+</div>
+<script src="/static/js/download.js"></script>
+<script src="/static/js/comment.js"></script>
+{{/if}}
+{{>footer}}
+<script src="/static/js/search.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script>
+
+   
+    function downloadSubtitles(){
+        const idMovie = $("#idMovie").text()
+        axios.post(`/movies/single/:${idMovie}/subtitles`, {
+            imdb: idMovie
+        })
+    }
+</script>
+
+

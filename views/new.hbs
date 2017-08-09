@@ -1,0 +1,25 @@
+{{> header }}
+<div class="container-fluid" style="margin-top: 8em;">
+    <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    <form action="/users/newPassword" method="POST">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
+            <div style="color: salmon; font-family: monospace">
+                <h2 style="color: white; font-weight: bold;">New PassWord</h2><br/><br/>
+                <p>Please enter your email adress to receive a new password</p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required/><br/>
+            </div>
+            <div class="form-group">
+                <label for="repassword">Confirm password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Your Password" required/><br/>
+            </div>
+            <input type="hidden" name="id" value="{{IdToken.id}}">
+            <input type="hidden" name="token" value="{{IdToken.token}}">
+            <input type="submit" style="background-color: brown; border-color: brown; color: white;" class="btn" value="Reset my password">
+        </div>
+    </form>
+</div>
+
+{{> footer }}
