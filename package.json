@@ -24,7 +24,7 @@
     "fanart.tv-api": "^1.0.3",
     "file-type": "^4.3.0",
     "fs": "0.0.1-security",
-    "got": "^6.7.1",
+    "got": "^11.8.5",
     "handlebars-helpers": "^0.10.0",
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
