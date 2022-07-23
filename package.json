@@ -22,7 +22,7 @@
     "express-session": "^1.15.2",
     "extratorrent-api": "^1.1.4",
     "fanart.tv-api": "^1.0.3",
-    "file-type": "^4.3.0",
+    "file-type": "^16.5.4",
     "fs": "0.0.1-security",
     "got": "^6.7.1",
     "handlebars-helpers": "^0.10.0",
